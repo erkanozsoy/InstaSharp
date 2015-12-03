@@ -134,15 +134,15 @@ namespace InstaSharp.Endpoints
         /// Check the Meta Property for any errors. E.G. Meta.Code =HttpStatuu stil lcomin over tonmgsCode.BadRequest, ErrorType="APISubscriptionError" and ErrorMessage="Unable to reach callback URL [url] will be set if the callback url has issues"
         /// </returns>
         /// <exception cref="System.ArgumentException">radius must be greater than 0 and less tha 5000;radius</exception>
-        public Task<SubscriptionResponse> CreateGeography(double latitude, double longitude, int radius, String verifyToken = null)
+        public Task<SubscriptionResponse> CreateGeography(string latitude, string longitude, int radius, String verifyToken = null)
         {
             if (radius < 0 || radius > 5000)
             {
                 throw new ArgumentException("radius must be greater than 0 and less tha 5000", "radius");
             }
             var postParams = PostParams(Object.Geography, verifyToken);
-            postParams["lat"] = latitude.ToString();
-            postParams["lng"] = latitude.ToString();
+            postParams["lat"] = latitude;
+            postParams["lng"] = latitude;
             postParams["radius"] = radius.ToString();
             return ExecuteAsync(postParams);
         }
